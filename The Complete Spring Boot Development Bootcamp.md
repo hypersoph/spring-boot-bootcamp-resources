@@ -66,6 +66,16 @@ Alternatively, you can use conditionals in `th:text`
 
 ![image-20230206200318863](assets/image-20230206200318863.png)
 
+## Cheatsheet from model view controller section
+
+https://www.learnthepart.com/course/af54547f-e993-47bd-ad51-d7c7270c4e50/9996e227-3402-4553-9009-dfbdbe1d5d64
+
+## Challenge 2
+
+### Flash Attributes - data that survives a redirect
+
+https://www.learnthepart.com/course/af54547f-e993-47bd-ad51-d7c7270c4e50/84f77423-b012-4ba3-bc90-6f2b2625ef49
+
 154. REST API: Getting Started
 
 - @ConditionalOnProperty
