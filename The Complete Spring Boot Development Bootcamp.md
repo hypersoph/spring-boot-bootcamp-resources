@@ -76,6 +76,25 @@ https://www.learnthepart.com/course/af54547f-e993-47bd-ad51-d7c7270c4e50/9996e22
 
 https://www.learnthepart.com/course/af54547f-e993-47bd-ad51-d7c7270c4e50/84f77423-b012-4ba3-bc90-6f2b2625ef49
 
+
+
+## Three layer architecture
+
+![image-20230208171305308](assets/image-20230208171305308.png)
+
+![image-20230208171534044](assets/image-20230208171534044.png)
+
+How to refactor our Controller to a Repository class
+
+- All CRUD (create read update delete) operations should only occur inside the repository
+- Strip all CRUD operations from the Controller class
+
+How to refactor our Controller to a Service class
+
+- Service must act as a middleman between Controller and Repository
+- Controller should not interact with Repository directly
+- Move every business operation from Controller into Service
+
 154. REST API: Getting Started
 
 - @ConditionalOnProperty
