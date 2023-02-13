@@ -94,12 +94,172 @@ How to refactor our Controller to a Service class
 - Service must act as a middleman between Controller and Repository
 - Controller should not interact with Repository directly
 - Move every business operation from Controller into Service
+- Move every interaction with the repository into service
 
-154. REST API: Getting Started
+## Beans and Dependency Injection
 
-- @ConditionalOnProperty
+1. A bean is an object that lives inside the Spring Container.
+2. As your `@SpringBootApplication` performs a `@ComponentScan`, a bean is created from classes marked with `@Component`.
+3. `@Controller`, `@Service` and `@Repository` derive from `@Component`.
+4. `@Configuration`: marks a class as a source for bean definitions.
+5. `@Bean`: method-level annotation for bean definitions.
+6. `@Autowired` injects the bean where it's needed.
+
+https://www.learnthepart.com/course/af54547f-e993-47bd-ad51-d7c7270c4e50/e210efe0-6347-4914-b6e9-3abe7e0755f0
+
+## Section 15: Challenge 5
+
+### 137. Autowired Vs Constructor
+
+- No ![image-20230209093546914](assets/image-20230209093546914.png)
+- almost![image-20230209093608241](assets/image-20230209093608241.png)
+- Yes![image-20230209093627449](assets/image-20230209093627449.png)
+- You do not need to add @Autowired at all for Spring Boot to know that the repositories need to be injected. Spring Boot will look at the constructors and wire all the dependencies needed
+
+To refactor the project for this challenge, add constructors to take advantage of Spring Boot's intelligent dependency injection
+
+- Note - Leave the StoreService storeService part, just delete new StoreService(); Still need that variable to be set
+
+![image-20230209094949385](assets/image-20230209094949385.png)
+
+![image-20230209095500981](assets/image-20230209095500981.png)
+
+- Note - @Autowired is redundant and can be removed
+
+# Section 16: Testing a Web Application
+
+139. The importance of dependency injection for unit testing
+
+- You can unit test a class only if it's loosely coupled
+- If a dependency is tightly coupled, the dependency's logic will always interfere with the logic of the class that we want to test
+- ![image-20230209100213042](assets/image-20230209100213042.png)
+
+141. Setting up Testing Class
+
+- We test the GradeService in this example
+
+- The gradeRepository will be mocked
+  - We will be able to control exactly what the gradeRepository can or can't return
+- @InjectMocks will inject the mock gradeRepository into the gradeService
+
+![image-20230209101811131](assets/image-20230209101811131.png)
+
+143. Unit Testing the Service Class
+
+You can test how many times a mock's method is called using verify() ![image-20230209104342056](assets/image-20230209104342056.png)
+
+146. Integration Testing
+
+We must use a MockMvc to simulate web requests
+
+![image-20230210163556939](assets/image-20230210163556939.png)
+
+A static import must be made for resultmatchers
+
+![image-20230210164608480](assets/image-20230210164608480.png)
+
+![image-20230210165458900](assets/image-20230210165458900.png)
+
+Use status(), view() and model() from MockMvcResultMatchers to validate the layers of the application
+
+
+
+# Cheat Sheet
+
+### Unit Testing
+
+------
+
+```
+@RunWith(MockitoJUnitRunner.class)
+public class GradeServiceTest {
+
+
+    @Mock
+    private Dependency dependency;
+
+    @InjectMocks
+    private Service service;
+
+}
+```
+
+1. `@RunWith(MockitoJUnitRunner.class)`: class-level annotation where the target class can run tests.
+2. `@Mock`: mocks a dependency.
+3. `@InjectMocks`: creates an object and injects every mock into it.
+4. `@Test`: method-level annotation that can run a test.
+
+------
+
+```
+    @Test
+    public void someUnitTest() {
+
+        //1. Arrange: prepare the data needed to carry out the test.
+        when(dependency.method()).thenReturn(someData); 
+
+        //2. Act: call the method you want to test.
+        Type result = service.method()
+
+	//3. Assert: verify that the method is behaving correctly.
+        assertEquals(expect, result);
+        verify(mock, times(number of invokations)).method()
+    }
+```
+
+### Integration Testing
+
+------
+
+```
+@SpringBootTest //starts up application context
+@AutoConfigureMockMvc  // Configures the Mockmvc Bean
+class TestClass {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Test 
+    public void test() throws Exception {
+
+    // 1. Create request.
+
+    RequestBuilder getRequest = MockMvcRequestBuilders.get("/path");
+    RequestBuilder postRequest = MockMvcRequestBuilders.post("/path");
+
+    // 2. Perform Request.
+
+    mockMvc.perform(getRequest)
+
+    mockMvc.perform(postRequest)
+      .param(param, value)
+      .param(param, value)
+      .param(param, value)
+      .param(param, value)
+
+    // 3. Verify status, view, model, etc...
+
+      .andExpect(status().isxxxSuccessful())
+
+      .andExpect(view().name("view"))
+
+      .andExpect(model().attributeExists("modelAttribute"));
+
+      .andExpect(redirectedUrl("/path"));
+    }
+
+
+}
+```
+
+150. REST API: Getting Started
+
+- @ConditionalOnProperty will only load the bean if the condition is satisfied
+- Can be useful if you have eg. different beans of the same type
 
 ![image-20230127093041573](The Complete Spring Boot Development Bootcamp.assets/image-20230127093041573.png)
+
+
 
 155.
 
@@ -117,3 +277,9 @@ How to refactor our Controller to a Service class
 Both are used to extract values from the request
 
 ![image-20230130201503387](assets/image-20230130201503387.png)@PathVariable is more suitable for REST. See docs. https://docs.spring.io/spring-framework/docs/3.0.0.M3/reference/html/ch18s02.html
+
+158. Rest API: POST Operation
+
+**@RequestBody** annotation is necessary for spring boot to deserialize the posted json data to a Contact object.
+
+![image-20230213095450540](assets/image-20230213095450540.png)
