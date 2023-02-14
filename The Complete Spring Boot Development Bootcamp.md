@@ -305,3 +305,29 @@ We can create a table in the h2 database without ever writing any SQL
 Make sure to annotate one of the columns with @Id to set it as a primary key.
 
 ![image-20230214155007760](assets/image-20230214155007760.png)
+
+177. Saving a student
+
+We can add rows to the table without writing any SQL either.
+
+Simply extend a CrudRepository
+
+![image-20230214160619439](assets/image-20230214160619439.png)
+
+Mark the student service with @Service and autowire the repository into it
+
+![image-20230214160658089](assets/image-20230214160658089.png)
+
+![image-20230214160718943](assets/image-20230214160718943.png)
+
+Autowire the the service into the StudentController...
+
+![image-20230214160812220](assets/image-20230214160812220.png)
+
+And try sending  a POST request
+
+![image-20230214160837261](assets/image-20230214160837261.png)
+
+Magic!
+
+![image-20230214160855108](assets/image-20230214160855108.png)
