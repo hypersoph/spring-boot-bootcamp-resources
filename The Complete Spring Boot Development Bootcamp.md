@@ -347,3 +347,37 @@ Studentcontroller.java
 ![image-20230214162144402](assets/image-20230214162144402.png)
 
 ![image-20230214162152752](assets/image-20230214162152752.png)
+
+180. Lombok
+
+Lombok helps to reduce boilerplate java code
+
+Install Lombok extension
+
+![image-20230214162304520](assets/image-20230214162304520.png)
+
+Make sure you have the lombok dependency
+
+![image-20230214162325617](assets/image-20230214162325617.png)
+
+Remove all the getters and setters in the Student class and add @Getter and @Setter decorators from Lombok.
+
+Lombok also has some for constructors to generate no argument constructors and all argument constructors for example.
+
+The result is a significantly cleaned up Student class.
+
+![image-20230214162648639](assets/image-20230214162648639.png)
+
+Intermission: NoArgsConstructor
+
+Official quote from JPA: *"The JPA specification requires that all persistent classes (*`*@Entity*`*) have a no-arg constructor. This constructor may be public or protected. Because the compiler automatically creates a default no-arg constructor when no other constructor is defined, only classes that define  constructors must also include a no-arg constructor.*"
+
+**In other words...**
+
+If there are no constructors, Java generates one by default.
+
+![img](assets/2022-08-01_20-37-50-1b331cf5d3751cd366e6fb56026c7d77.png)
+
+If you're defining constructors, don't forget `@NoArgsConstructor`
+
+![img](assets/2022-08-01_20-39-29-28cedf06f8e1a0d884c2544df9fc76bd.png)
