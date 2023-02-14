@@ -331,3 +331,19 @@ And try sending  a POST request
 Magic!
 
 ![image-20230214160855108](assets/image-20230214160855108.png)
+
+178. Retrieving a Student
+
+StudentServiceImpl.java
+
+![image-20230214161722030](assets/image-20230214161722030.png)
+
+Studentcontroller.java
+
+![image-20230214161734444](assets/image-20230214161734444.png)
+
+179. Delete a Student
+
+![image-20230214162144402](assets/image-20230214162144402.png)
+
+![image-20230214162152752](assets/image-20230214162152752.png)
