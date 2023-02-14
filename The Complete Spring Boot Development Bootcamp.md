@@ -283,3 +283,25 @@ Both are used to extract values from the request
 **@RequestBody** annotation is necessary for spring boot to deserialize the posted json data to a Contact object.
 
 ![image-20230213095450540](assets/image-20230213095450540.png)
+
+174. JPA and H2
+
+Trick to add common spring dependencies to a pom.xml
+
+![image-20230214152644709](assets/image-20230214152644709.png)
+
+I had to manually click on the final <enter to proceed> part and then a popup shows up to confirm.
+
+We need Spring boot JPA and H2 Database. Make sure it is Spring Boot JPA and not Spring JPA.
+
+Note: paste the url from the provided application.properties into the h2 console to connect
+
+![image-20230214154902208](assets/image-20230214154902208.png)
+
+176. Object Relational Mapper
+
+We can create a table in the h2 database without ever writing any SQL
+
+Make sure to annotate one of the columns with @Id to set it as a primary key.
+
+![image-20230214155007760](assets/image-20230214155007760.png)
