@@ -381,3 +381,29 @@ If there are no constructors, Java generates one by default.
 If you're defining constructors, don't forget `@NoArgsConstructor`
 
 ![img](assets/2022-08-01_20-39-29-28cedf06f8e1a0d884c2544df9fc76bd.png)
+
+### 182. Grade Entity
+
+the id field will be the primary key of the grade table with column name "id" and will be a generated value.
+
+Grade.java
+
+![image-20230216095431419](assets/image-20230216095431419.png)
+
+extend a CrudRepository for the grade repository and specify that it will hold objects of type Grade with a primary  key of type Long
+
+GradeRepository.java
+
+![image-20230216095458003](assets/image-20230216095458003.png)
+
+To automatically populate the database with sample data have the application root implement a CommandLineRunner
+
+GradeSubmissionApplication.java
+
+![image-20230216095540297](assets/image-20230216095540297.png)
+
+Wire the repository into the service and the service into the controller
+
+![image-20230216095907998](assets/image-20230216095907998.png)
+
+![image-20230216095920953](assets/image-20230216095920953.png)
