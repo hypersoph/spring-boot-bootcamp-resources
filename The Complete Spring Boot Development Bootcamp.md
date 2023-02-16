@@ -539,3 +539,11 @@ to ensure that only one grade is given for a unique combination of student id an
 ![image-20230216160450432](assets/image-20230216160450432.png)
 
 Spring will throw data integrity exceptions for you with these constraints
+
+### 195. Refactoring around Optionals - Loose Ends
+
+![image-20230216161320964](assets/image-20230216161320964.png)
+
+![image-20230216161338304](assets/image-20230216161338304.png)
+
+etc...
