@@ -433,3 +433,23 @@ GradeController.java
 ![image-20230216101604106](assets/image-20230216101604106.png)
 
 ![image-20230216101444612](assets/image-20230216101444612.png)
+
+### 184. Read Grade by Student Id
+
+Spring Boot can intelligently generate the implementation of your GradeRepository by reading your specified method signatures if it is written in a very specific format. 
+
+Eg. (1) findBy (2) StudentId - this must match up with the column name (3) Long id
+
+![image-20230216103306276](assets/image-20230216103306276.png)
+
+GradeRepository.java
+
+![image-20230216103022890](assets/image-20230216103022890.png)
+
+GradeServiceImpl.java
+
+![image-20230216103038500](assets/image-20230216103038500.png)
+
+GradeController.java
+
+![image-20230216103052683](assets/image-20230216103052683.png)
