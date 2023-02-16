@@ -477,3 +477,19 @@ We also have to add **@JsonIgnore** to remove the grades array from the response
 
 
 ![image-20230216130220203](assets/image-20230216130220203.png)
+
+Intermission: Best Practice
+
+An excerpt from the **Hibernate Best Practices**:
+
+*"Prefer bidirectional associations:*
+
+*Unidirectional associations are more difficult to query. In a large application,  almost all associations must be navigable in both directions in  queries."*
+
+### 188. Cascade
+
+In order to successfully delete a Student record, we need to add cascade because otherwise if we deleted a student then the grades table with the student id would make no sense (grade for non existing student).
+
+Student.java
+
+![image-20230216143817468](assets/image-20230216143817468.png)
