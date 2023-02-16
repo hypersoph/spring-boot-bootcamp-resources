@@ -493,3 +493,9 @@ In order to successfully delete a Student record, we need to add cascade because
 Student.java
 
 ![image-20230216143817468](assets/image-20230216143817468.png)
+
+### 189. Autowired vs AllArgsConstructor
+
+We replace everywhere that has Autowired annotations with @AllArgsConstructor instead. Spring will perform the dependency injection based on the constructor.
+
+![image-20230216144356972](assets/image-20230216144356972.png)
