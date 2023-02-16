@@ -523,3 +523,19 @@ Consider the fact that users might request something that does not exist. We ris
 Note that get operations are transactional by default but delete operation is not. You must add this annotation or else the delete requests will throw an error.
 
 ![image-20230216155915343](assets/image-20230216155915343.png)
+
+## 194. Constraints: Preventing Duplicate Grades
+
+Course.java
+
+To ensure that there are no two courses with the same course code
+
+![image-20230216160402649](assets/image-20230216160402649.png)
+
+Grade.java
+
+to ensure that only one grade is given for a unique combination of student id and course id
+
+![image-20230216160450432](assets/image-20230216160450432.png)
+
+Spring will throw data integrity exceptions for you with these constraints
