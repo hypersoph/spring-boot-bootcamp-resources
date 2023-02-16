@@ -499,3 +499,9 @@ Student.java
 We replace everywhere that has Autowired annotations with @AllArgsConstructor instead. Spring will perform the dependency injection based on the constructor.
 
 ![image-20230216144356972](assets/image-20230216144356972.png)
+
+### 191. One to Many
+
+See 184. for explanation
+
+![image-20230216153340837](assets/image-20230216153340837.png)
