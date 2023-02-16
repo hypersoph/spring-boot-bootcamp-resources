@@ -517,3 +517,9 @@ Consider the fact that users might request something that does not exist. We ris
 ![image-20230216154646531](assets/image-20230216154646531.png)
 
 ![image-20230216154657778](assets/image-20230216154657778.png)
+
+### 193. Finalizing the GradeServiceImpl
+
+Note that get operations are transactional by default but delete operation is not. You must add this annotation or else the delete requests will throw an error.
+
+![image-20230216155915343](assets/image-20230216155915343.png)
