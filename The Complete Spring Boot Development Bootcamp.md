@@ -453,3 +453,27 @@ GradeServiceImpl.java
 GradeController.java
 
 ![image-20230216103052683](assets/image-20230216103052683.png)
+
+### 186. Bidirectional: One To Many
+
+![image-20230216103642007](assets/image-20230216103642007.png)
+
+Student.java
+
+![image-20230216125720318](assets/image-20230216125720318.png)
+
+First we replaced @AllArgsConstructor with @RequiredArgsConstructor so we can add a new grades field without breaking our implementation of the command line runner. We have to mark the required fields with @NonNull as well.
+
+![image-20230216130433857](assets/image-20230216130433857.png)
+
+**We must add `mappedBy` to @OneToMany on the grades field to tell spring boot that this already has a mapping with the student table or else spring boot will create an extra table like so**
+
+![image-20230216103817530](assets/image-20230216103817530.png)
+
+We also have to add **@JsonIgnore** to remove the grades array from the response. The reason for this is that the grades already contain a field from a Student, which will **cause looping** when spring boot tries to serialize the objects into json.
+
+![image-20230216125130343](assets/image-20230216125130343.png)
+
+
+
+![image-20230216130220203](assets/image-20230216130220203.png)
