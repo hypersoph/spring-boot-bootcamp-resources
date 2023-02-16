@@ -407,3 +407,29 @@ Wire the repository into the service and the service into the controller
 ![image-20230216095907998](assets/image-20230216095907998.png)
 
 ![image-20230216095920953](assets/image-20230216095920953.png)
+
+### 183. Unidirectional: Many to One
+
+We will create a foreign key column in the grade table referencing the student id from the student table
+
+We specify that it has a Many to One relationship (Many grades to one student id) and that every grade must belong to a student (optional=false). This will give a request error if a POST request does not contain a student id. We could also make nullable=false in the @JoinColumn annotation but **using optional=false in the @ManyToOne annotation is best practice because it will block the request before contacting the database.** It is a runtime instruction.
+
+Grade.java
+
+![image-20230216101639858](assets/image-20230216101639858.png)
+
+GradeServiceImpl.java
+
+![image-20230216101701252](assets/image-20230216101701252.png)
+
+GradeController.java
+
+![image-20230216101726217](assets/image-20230216101726217.png)
+
+
+
+![image-20230216100539382](assets/image-20230216100539382.png)
+
+![image-20230216101604106](assets/image-20230216101604106.png)
+
+![image-20230216101444612](assets/image-20230216101444612.png)
