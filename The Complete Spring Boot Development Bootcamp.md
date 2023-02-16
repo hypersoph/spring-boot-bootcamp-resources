@@ -505,3 +505,15 @@ We replace everywhere that has Autowired annotations with @AllArgsConstructor in
 See 184. for explanation
 
 ![image-20230216153340837](assets/image-20230216153340837.png)
+
+### 192. Refactoring around Optional
+
+Consider the fact that users might request something that does not exist. We risk running into null exceptions.
+
+![image-20230216153716682](assets/image-20230216153716682.png)
+
+![image-20230216153615104](assets/image-20230216153615104.png)
+
+![image-20230216154646531](assets/image-20230216154646531.png)
+
+![image-20230216154657778](assets/image-20230216154657778.png)
