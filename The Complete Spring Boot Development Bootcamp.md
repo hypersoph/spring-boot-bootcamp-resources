@@ -591,3 +591,39 @@ etc...
 - **`@ManyToOne`**: Many rows in the child table belong to one row in the parent table.
 
 - **`@OneToMany`**: One row in the parent table associates with many rows in the child table.
+
+## Challenge 8: Many to Many Relationships
+
+### Challenge Part 1 & 2
+
+`@JsonIgnore` since courses are associated with students and students are associated with courses we have to add this annotation to both entities to prevent loops.
+
+`@ManyToMany` a course can have many students and students can take multiple courses.
+
+`@JoinTable` a table course_student will be created for the many to many relationship. specify the join keys.
+
+Note that **both tables have to own the relationship** using the @JoinTable annotation or else there will be deletion errors. A `mapped_by` like we have used previously is not enough. `mapped_by` implies a one sided owning relationship, so we use it for One to Many relationships.
+
+![image-20230217103458646](assets/image-20230217103458646.png)
+
+Course.java
+
+![image-20230217102702426](assets/image-20230217102702426.png)
+
+Student.java
+
+![image-20230217102717963](assets/image-20230217102717963.png)
+
+CourseServiceImpl.java
+
+**Note that Spring Boot will handle adding rows to the new course_student join table automatically.** You do not need to add any special logic.
+
+Note the usage of existing method `getCourse` to simplify the code. We could have done the long way of finding course by id and so on but this is much cleaner.
+
+![image-20230217103118025](assets/image-20230217103118025.png)
+
+CourseController.java
+
+![image-20230217103138149](assets/image-20230217103138149.png)
+
+Similar for Student service and controller.
