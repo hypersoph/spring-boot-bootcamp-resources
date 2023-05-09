@@ -2,14 +2,16 @@
 
 Notice the spring-boot-devtools dependency which speeds up development by ensuring the maven project is rebuilt whenever there are changes.
 
-62. The MVC Design
+## Section 8: Model View Controller
+
+### 62. The MVC Design
 
 - View - what the user sees
 - Model - represents the data needed by the view
 - Controller - allows the view and model to interact
   - responds to requests by managing Model and presenting view
 
-63. The Controller
+### 63. The Controller
 
     ![image-20230206190243554](assets/image-20230206190243554.png)
   - The class annotated with @Controller is an entry point for web requests
@@ -18,7 +20,7 @@ Notice the spring-boot-devtools dependency which speeds up development by ensuri
     - actually looks inside the templates folder for somehtmlview, but there is nothing so an error code is returned.
 
 
-70. The Model
+### 70. The Model
 
 - Download Java Code Generators extension for vs code
 - We create a Grade.java class with three fields and generate all the constructors and getters and setters with this extension
@@ -26,7 +28,7 @@ Notice the spring-boot-devtools dependency which speeds up development by ensuri
 
 ![image-20230206191911191](assets/image-20230206191911191.png)
 
-75. Thymeleaf: Combining Model and View
+### 75. Thymeleaf: Combining Model and View
 
 **Variable Expression**
 
@@ -38,7 +40,7 @@ Notice the spring-boot-devtools dependency which speeds up development by ensuri
 
 - Make sure there are public getters for the needed attributes or thymeleaf will not be able to read them
 
-76. **Selection expression**
+### 76. **Selection expression**
 
 ![image-20230206194047998](assets/image-20230206194047998.png)
 
@@ -46,7 +48,7 @@ Notice the spring-boot-devtools dependency which speeds up development by ensuri
 
 Then selection expressions (prefixed by star) can select attributes from the previously bound object.
 
-78. Thymeleaf conditionals
+### 78. Thymeleaf conditionals
 
 `th:if` will render if condition is true
 
@@ -66,19 +68,20 @@ Alternatively, you can use conditionals in `th:text`
 
 ![image-20230206200318863](assets/image-20230206200318863.png)
 
-## Cheatsheet from model view controller section
+### Cheatsheet from model view controller section
 
 https://www.learnthepart.com/course/af54547f-e993-47bd-ad51-d7c7270c4e50/9996e227-3402-4553-9009-dfbdbe1d5d64
 
-## Challenge 2
+## Section 9: Challenge 2
 
 ### Flash Attributes - data that survives a redirect
 
 https://www.learnthepart.com/course/af54547f-e993-47bd-ad51-d7c7270c4e50/84f77423-b012-4ba3-bc90-6f2b2625ef49
 
 
+## Section 12: Three Layer Codebase
 
-## Three layer architecture
+### 121. Three layer architecture
 
 ![image-20230208171305308](assets/image-20230208171305308.png)
 
@@ -96,7 +99,7 @@ How to refactor our Controller to a Service class
 - Move every business operation from Controller into Service
 - Move every interaction with the repository into service
 
-## Beans and Dependency Injection
+## Section 14: Beans and Dependency Injection
 
 1. A bean is an object that lives inside the Spring Container.
 2. As your `@SpringBootApplication` performs a `@ComponentScan`, a bean is created from classes marked with `@Component`.
@@ -126,7 +129,7 @@ To refactor the project for this challenge, add constructors to take advantage o
 
 - Note - @Autowired is redundant and can be removed
 
-# Section 16: Testing a Web Application
+## Section 16: Testing a Web Application
 
 139. The importance of dependency injection for unit testing
 
@@ -164,7 +167,7 @@ Use status(), view() and model() from MockMvcResultMatchers to validate the laye
 
 
 
-# Cheat Sheet
+### Cheat Sheet
 
 ### Unit Testing
 
@@ -251,8 +254,8 @@ class TestClass {
 
 }
 ```
-
-150. REST API: Getting Started
+## Section 19: Rest API
+### 154. REST API: Getting Started
 
 - @ConditionalOnProperty will only load the bean if the condition is satisfied
 - Can be useful if you have eg. different beans of the same type
@@ -261,7 +264,7 @@ class TestClass {
 
 
 
-155.
+### 155. REST API: GET Operation
 
 - @GetMapping
 - @Controller + @ResponseBody
@@ -283,6 +286,8 @@ Both are used to extract values from the request
 **@RequestBody** annotation is necessary for spring boot to deserialize the posted json data to a Contact object.
 
 ![image-20230213095450540](assets/image-20230213095450540.png)
+
+## Section 22: SQL Database (Spring Boot JPA)
 
 174. JPA and H2
 
@@ -524,7 +529,7 @@ Note that get operations are transactional by default but delete operation is no
 
 ![image-20230216155915343](assets/image-20230216155915343.png)
 
-## 194. Constraints: Preventing Duplicate Grades
+###194. Constraints: Preventing Duplicate Grades
 
 Course.java
 
@@ -627,3 +632,26 @@ CourseController.java
 ![image-20230217103138149](assets/image-20230217103138149.png)
 
 Similar for Student service and controller.
+
+## Section 24: Spring Security: Basic and JWT Authentication
+
+### 208. Basic Auth with Spring Security Part 1
+
+![image-20230509181057376](assets/image-20230509181057376.png)
+
+![image-20230509181139232](assets/image-20230509181139232.png)
+
+As of Spring Boot 2.7 the SecurityConfig class no longer has to extend a WebSecurityConfigurerAdapter.
+
+Instead, the SecurityFilterChain bean is created directly. The filter chain will define the security rules/filters that are checked against every request.
+
+The below filter chain configuration says that any http request that goes through the filter chain 
+
+- should be authorized
+- should be authenticated
+- with basic authentication
+- and stateless session management
+  - without the stateless policy, spring security creates a session for a user, making it possible for them to successfully request e.g. all the contacts even after switching to No Auth in postman if they have authenticated once before. This default behaviour is **session-based authentication**.
+
+![image-20230509180854627](assets/image-20230509180854627.png)
+
