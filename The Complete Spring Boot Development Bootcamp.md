@@ -720,3 +720,13 @@ UserServiceImpl.java
 Test the endpoint in Postman:
 
 ![image-20230531132609364](assets/image-20230531132609364.png)
+
+### 218. Intermission: Protecting the Password
+
+We should not be sending back the encrypted password. We can just send back a status and no response body.
+
+![image-20230531132913178](assets/image-20230531132913178.png)
+
+Same Postman test:
+
+![image-20230531133008172](assets/image-20230531133008172.png)
