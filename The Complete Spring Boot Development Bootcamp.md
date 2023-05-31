@@ -730,3 +730,17 @@ We should not be sending back the encrypted password. We can just send back a st
 Same Postman test:
 
 ![image-20230531133008172](assets/image-20230531133008172.png)
+
+### 219. Token-based Authentication - Part 2
+
+Implementing the login portion
+
+We will create a new filter that will map the request data to a User object
+
+AuthenticationFilter.java
+
+![image-20230531144804461](assets/image-20230531144804461.png)
+
+![image-20230531144747403](assets/image-20230531144747403.png)
+
+Note line 24. Setting the authentication url will make it so that the attemptAuthentication method will not execute unless the url matches /authenticate
