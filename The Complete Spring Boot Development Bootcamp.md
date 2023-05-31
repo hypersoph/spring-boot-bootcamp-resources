@@ -776,3 +776,33 @@ If you want to write a String into the response:
 ```
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);            response.getWriter().write("BAD REQUEST");    // <--            response.getWriter().flush();
 ```
+
+### 222. Token-based Authentication - Part 3
+
+Authentication Manager
+
+The authentication manager will check if the credentials are valid.
+
+AuthenticationManager.java
+
+![image-20230531155120879](assets/image-20230531155120879.png)
+
+![image-20230531155203257](assets/image-20230531155203257.png)
+
+![image-20230531155211398](assets/image-20230531155211398.png)
+
+![image-20230531155221534](assets/image-20230531155221534.png)
+
+AuthenticationFilter.java
+
+In the authentication filter we must create the token based on what the user passed in the request and pass it to our custom authentication manager to check if it's valid.
+
+![image-20230531155306964](assets/image-20230531155306964.png)
+
+We also implement two methods that will be automatically executed for unsuccessful and successful authentication respectively.
+
+![image-20230531155353398](assets/image-20230531155353398.png)
+
+Don't forget the SecurityConfig.
+
+![image-20230531155457172](assets/image-20230531155457172.png)
