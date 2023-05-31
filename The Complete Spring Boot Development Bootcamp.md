@@ -664,3 +664,41 @@ Only difference in the filter chain for this starter project is these two lines.
 The first is required to render H2 on your browser. The second is required so you don't have to constantly authenticate when you connect to H2. It will just allow the request.
 
 Note - H2 is for development purposes only!
+
+### 216. Token-based Authentication (JWT)
+
+**JWT Token**
+
+A JSON Web Token consists of 3 parts which are base 64 encoded:
+
+**Header** - information about the type and algorithm used for the token
+
+**Payload** - information about the user, token expiry
+
+**Signature** - Result of a signing algorithm that combines the header, payload, and secret key
+
+![image-20230531131046556](assets/image-20230531131046556.png)
+
+
+
+Pathway one - registration
+
+All requests will be permitted to register. Credentials will be encoded and saved.
+
+![image-20230531130327648](assets/image-20230531130327648.png)
+
+Pathway two - login
+
+User logs in. If the password matches the user is granted a JWT token.
+
+![image-20230531130415469](assets/image-20230531130415469.png)
+
+![image-20230531130612063](assets/image-20230531130612063.png)
+
+Pathway three - authorization
+
+User's request now includes the JWT token they were provided. The Authorization filter will catch the request and try to verify the token provided by applying the same algorithm with a secret key no one knows. If the signature matches the token's signature the token is valid.
+
+![image-20230531130815858](assets/image-20230531130815858.png)
+
+The user's information gets saved inside the SecurityContextHolder.
