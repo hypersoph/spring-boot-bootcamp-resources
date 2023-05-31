@@ -702,3 +702,21 @@ User's request now includes the JWT token they were provided. The Authorization 
 ![image-20230531130815858](assets/image-20230531130815858.png)
 
 The user's information gets saved inside the SecurityContextHolder.
+
+### 217. Token-based Authentication - Part 1
+
+Pathway 1 implementation
+
+![image-20230531132430887](assets/image-20230531132430887.png)
+
+UserController.java
+
+![image-20230531132505487](assets/image-20230531132505487.png)
+
+UserServiceImpl.java
+
+![image-20230531132520772](assets/image-20230531132520772.png)
+
+Test the endpoint in Postman:
+
+![image-20230531132609364](assets/image-20230531132609364.png)
