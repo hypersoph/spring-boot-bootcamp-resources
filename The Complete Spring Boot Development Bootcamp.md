@@ -744,3 +744,28 @@ AuthenticationFilter.java
 ![image-20230531144747403](assets/image-20230531144747403.png)
 
 Note line 24. Setting the authentication url will make it so that the attemptAuthentication method will not execute unless the url matches /authenticate
+
+### 220. Side Quest: Exception Handling + Dispatcher Servlet
+
+We cannot user the exception controller advice to catch exceptions thrown by the authentication filters because they run before the dispatcher servlet.
+
+![image-20230531151531516](assets/image-20230531151531516.png)
+
+Instead, we must implement our own exception handler for the filter chain. 
+
+Extending the OncePerRequestFilter instead of implementing the generic Filter class ensures that the filter runs only once per request.
+
+You must add filterChain.doFilter to continue the filter chain. Otherwise, the filtering will just end there.
+
+We will wrap doFilter in a try catch block so that if any exceptions occur downstream it will be caught by the ExceptionHandlerFilter. 
+
+![image-20230531151714543](assets/image-20230531151714543.png)
+
+Add it to the filter chain using addFilterBefore() to make sure it runs before any other filters.
+
+![image-20230531151735965](assets/image-20230531151735965.png)
+
+Make sure the AuthenticationFilter also calls doFilter() to continue the chain
+
+![image-20230531152019210](assets/image-20230531152019210.png)
+
