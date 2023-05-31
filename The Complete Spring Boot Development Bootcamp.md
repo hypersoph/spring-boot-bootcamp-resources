@@ -655,3 +655,12 @@ The below filter chain configuration says that any http request that goes throug
 
 ![image-20230509180854627](assets/image-20230509180854627.png)
 
+### 215. Getting Started: JWT Project
+
+![image-20230531105154495](assets/image-20230531105154495.png)
+
+Only difference in the filter chain for this starter project is these two lines.
+
+The first is required to render H2 on your browser. The second is required so you don't have to constantly authenticate when you connect to H2. It will just allow the request.
+
+Note - H2 is for development purposes only!
