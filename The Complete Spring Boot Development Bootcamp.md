@@ -769,3 +769,10 @@ Make sure the AuthenticationFilter also calls doFilter() to continue the chain
 
 ![image-20230531152019210](assets/image-20230531152019210.png)
 
+Side note for the ExceptionHandlerFilter
+
+If you want to write a String into the response: 
+
+```
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);            response.getWriter().write("BAD REQUEST");    // <--            response.getWriter().flush();
+```
